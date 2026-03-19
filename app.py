@@ -5,8 +5,7 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-ORDERS_FILE = os.path.join(BASE_DIR, 'orders.json')
+ORDERS_FILE = 'R:/orders.json'
 
 @app.route('/')
 def hello_world():

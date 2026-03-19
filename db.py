@@ -73,7 +73,7 @@ def write_orders_into_file():
 
             flattened_orders.append(new_entry)
 
-    with open('orders.json', 'w', encoding='utf-8') as outfile:
+    with open('R:/orders.json', 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
 
 

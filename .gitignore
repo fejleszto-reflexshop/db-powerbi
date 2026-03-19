@@ -11,6 +11,8 @@ __pycache__/
 *.json
 *.csv
 *.log
+*.bat
+*.vbs
 
 # Distribution / packaging
 .Python
