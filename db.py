@@ -21,3 +21,6 @@ def write_orders_into_file():
 
     with open('orders.json', 'w') as outfile:
         json.dump(orders, outfile)
+
+if __name__ == "__main__":
+    write_orders_into_file()
