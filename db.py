@@ -12,7 +12,7 @@ db = create_client(db_url, db_key)
 
 
 def get_orders_from_db():
-    api_call: APIResponse = db.table('orders').select('*').execute()
+    api_call: APIResponse = db.table('orders').select('*').order("id", desc=False).execute()
 
     return api_call.data
 
