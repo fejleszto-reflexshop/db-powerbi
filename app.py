@@ -1,6 +1,5 @@
-from flask import Flask, send_file, jsonify
+from flask import Flask, jsonify
 from flask_cors import CORS
-import os
 import subprocess
 
 app = Flask(__name__)
@@ -15,7 +14,10 @@ def hello_world():
 
 @app.route('/trigger')
 def trigger_script():
-    p = subprocess.run(["C:\Program Files\Python313\python.exe", "C:\Projekt\db-powerbi\db.py"], capture_output=True, text=True)
+    p = subprocess.run(
+        ["C:\Program Files\Python313\python.exe", "C:\Projekt\db-powerbi\db.py"],
+        capture_output=True,
+        text=True)
 
     return jsonify({"response": f"{p.returncode}"})
 

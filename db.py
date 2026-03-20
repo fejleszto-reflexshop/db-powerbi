@@ -75,7 +75,6 @@ def write_orders_into_file():
 
     with open('R:/orders.json', 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
-        print('json db is writed into the file')
 
 
 
