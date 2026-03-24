@@ -3,6 +3,7 @@ from supabase import create_client
 import os
 from dotenv import load_dotenv
 import json
+from datetime import datetime as dt, timedelta
 
 load_dotenv()
 
@@ -12,7 +13,13 @@ db = create_client(db_url, db_key)
 
 
 def get_orders_from_db():
-    api_call: APIResponse = db.table('orders').select('*').order("id", desc=False).execute()
+    yesterday = dt.now() - timedelta(days=1)
+
+    api_call: APIResponse = (db.table('orders')
+                             .select('*')
+                             .like("Date", f"{yesterday.strftime('%Y.%m.%d')}%")
+                             .order("id", desc=False)
+                             .execute())
 
     return api_call.data
 
