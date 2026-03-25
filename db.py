@@ -11,6 +11,8 @@ db_url = os.getenv('DATABASE_URL')
 db_key = os.getenv('DATABASE_KEY')
 db = create_client(db_url, db_key)
 
+ORDER_FILE_PATH: str = 'R:/orders.json'
+
 
 def get_orders_from_db():
     yesterday = dt.now() - timedelta(days=1)
@@ -50,6 +52,12 @@ def write_orders_into_file():
 
     flattened_orders = []
 
+    with open(ORDER_FILE_PATH, 'r', encoding='utf-8') as file:
+        order_data = json.load(file)
+
+        for order in order_data:
+            flattened_orders.append(order)
+
     for order in orders:
         items = order.get("Items", {}).get("Item", [])
 
@@ -80,9 +88,8 @@ def write_orders_into_file():
 
             flattened_orders.append(new_entry)
 
-    with open('R:/orders.json', 'a', encoding='utf-8') as outfile:
+    with open(ORDER_FILE_PATH, 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
-
 
 
 if __name__ == "__main__":
