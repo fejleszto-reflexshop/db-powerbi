@@ -108,7 +108,7 @@ def write_orders_into_file():
 
     # in future
     if IS_FILTER:
-        flattened_orders = [flattened_orders.remove(item) for item in flattened_orders if item['item_Name'] in ['Kedvezmény', 'Szállítási költség', 'Utánvét kezelési költség', 'Fizetési kezelési költség']]
+        flattened_orders = [item for item in flattened_orders if item['item_Name'] not in ['Kedvezmény', 'Szállítási költség', 'Utánvét kezelési költség', 'Fizetési kezelési költség']]
 
 
     with open(ORDER_FILE_PATH, 'w', encoding='utf-8') as outfile:
