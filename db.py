@@ -14,6 +14,8 @@ db = create_client(db_url, db_key)
 ORDER_FILE_PATH: str = 'R:/orders.json'
 RAW_ORDER_FILE_PATH: str = 'R:/raw_orders.json'
 
+IS_FILTER: bool = False
+
 
 def get_orders_from_db():
     yesterday = dt.now() - timedelta(days=1)
@@ -103,6 +105,11 @@ def write_orders_into_file():
                 new_entry[f"item_{k}"] = v
 
             flattened_orders.append(new_entry)
+
+    # in future
+    if IS_FILTER:
+        flattened_orders = [flattened_orders.remove(item) for item in flattened_orders if item['item_Name'] in ['Kedvezmény', 'Szállítási költség', 'Utánvét kezelési költség', 'Fizetési kezelési költség']]
+
 
     with open(ORDER_FILE_PATH, 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
