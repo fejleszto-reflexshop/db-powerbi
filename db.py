@@ -12,6 +12,7 @@ db_key = os.getenv('DATABASE_KEY')
 db = create_client(db_url, db_key)
 
 ORDER_FILE_PATH: str = 'R:/orders.json'
+RAW_ORDER_FILE_PATH: str = 'R:/raw_orders.json'
 
 
 def get_orders_from_db():
@@ -45,6 +46,21 @@ def flatten_dict(d, parent_key='', sep='_'):
             items.append((new_key, v))
 
     return dict(items)
+
+def write_raw_orders_into_file(orders):
+    ls = []
+
+    with open(RAW_ORDER_FILE_PATH, 'r', encoding='utf-8') as file:
+        raw_order_data = json.load(file)
+
+        for order in raw_order_data:
+            ls.append(order)
+
+    for order in orders:
+        ls.append(order)
+
+    with open(RAW_ORDER_FILE_PATH, 'w', encoding='utf-8') as file:
+        json.dump(ls, file, indent=4, ensure_ascii=False)
 
 
 def write_orders_into_file():
@@ -90,6 +106,8 @@ def write_orders_into_file():
 
     with open(ORDER_FILE_PATH, 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
+
+    write_raw_orders_into_file(orders)
 
 
 if __name__ == "__main__":
