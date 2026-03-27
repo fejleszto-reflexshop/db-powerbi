@@ -8,7 +8,6 @@ __pycache__/
 
 .env
 .idea
-*.json
 *.csv
 *.log
 *.bat
