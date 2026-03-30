@@ -114,7 +114,7 @@ def write_orders_into_file():
     with open(ORDER_FILE_PATH, 'w', encoding='utf-8') as outfile:
         json.dump(flattened_orders, outfile, indent=4, ensure_ascii=False)
 
-    write_raw_orders_into_file(orders)
+    # write_raw_orders_into_file(orders)
 
 
 if __name__ == "__main__":

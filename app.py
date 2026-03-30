@@ -5,8 +5,6 @@ import subprocess
 app = Flask(__name__)
 CORS(app)
 
-ORDERS_FILE = 'R:/orders.json'
-
 @app.route('/')
 def hello_world():
     return '<h2>supabase db <-> power bi report project</h2><br><p>trigger fetching: <a href="/trigger">Click here</a></p>'
@@ -19,7 +17,7 @@ def trigger_script():
         capture_output=True,
         text=True)
 
-    return jsonify({"response": f"{p.returncode}"})
+    return jsonify({"response": f"{p.returncode} {p.stderr}"})
 
 
 if __name__ == '__main__':
