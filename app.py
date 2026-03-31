@@ -6,8 +6,8 @@ app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
-def hello_world():
-    return '<h2>supabase db <-> power bi report project</h2><br><p>trigger fetching: <a href="/trigger">Click here</a></p>'
+def main_page():
+    return '<h2>supabase db <-> power bi report project</p>'
 
 
 @app.route('/trigger')
