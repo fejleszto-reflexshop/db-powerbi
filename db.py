@@ -116,6 +116,10 @@ def write_orders_into_file():
 
     # write_raw_orders_into_file(orders)
 
+def get_potlas_games():
+    api_call: APIResponse = db.table('potlas-webpage').select("html_code").execute()
+
+    return api_call.data
 
 if __name__ == "__main__":
     write_orders_into_file()
