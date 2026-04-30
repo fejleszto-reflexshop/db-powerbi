@@ -7,13 +7,17 @@ import time
 app = Flask(__name__)
 CORS(app)
 
-def run_script(path: str) -> str:
+def run_script(path: str, cd_to: str | None = None) -> str:
     p = subprocess.run(
         ["C:\\Program Files\\Python313\\python.exe", path],
+        cwd=cd_to,
         capture_output=True,
-        text=True)
-    
-    return f"{p.returncode} {p.stderr}"
+        text=True,
+        encoding="utf-8",
+        errors="replace"
+    )
+
+    return f"returncode: {p.returncode}\nSTDOUT:\n{p.stdout}\nSTDERR:\n{p.stderr}"
 
 
 @app.route('/')
@@ -36,7 +40,7 @@ def potlas():
 
     time.sleep(1)
 
-    r = run_script("C:\\Projekt\\potlas-weboldal\\upload.py")
+    r = run_script("C:\\Projekt\\potlas-weboldal\\upload.py", cd_to="C:\\Projekt\\potlas-weboldal")
     
     return jsonify({'response': r})
 
