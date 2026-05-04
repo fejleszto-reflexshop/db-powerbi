@@ -40,7 +40,7 @@ def potlas():
 
     time.sleep(1)
 
-    r = run_script("C:\\Projekt\\potlas-weboldal\\upload.py", cd_to="C:\\Projekt\\potlas-weboldal")
+    r = run_script(path="C:\\Projekt\\potlas-weboldal\\upload.py", cd_to="C:\\Projekt\\potlas-weboldal")
     
     return jsonify({'response': r})
 
