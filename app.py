@@ -22,7 +22,7 @@ def run_script(path: str, cd_to: str | None = None) -> str:
 
 @app.route('/')
 def main_page():
-    return '<h2>supabase db <-> power bi report project</p>'
+    return '<h2>reflexshop project\'s API</p>'
 
 
 @app.route('/trigger')
