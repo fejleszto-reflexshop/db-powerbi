@@ -11,8 +11,8 @@ db_url = os.getenv('DATABASE_URL')
 db_key = os.getenv('DATABASE_KEY')
 db = create_client(db_url, db_key)
 
-ORDER_FILE_PATH: str = 'R:/orders.json'
-RAW_ORDER_FILE_PATH: str = 'R:/raw_orders.json'
+ORDER_FILE_PATH: str = 'R:/All/orders.json'
+RAW_ORDER_FILE_PATH: str = 'R:/All/raw_orders.json'
 
 IS_FILTER: bool = False
 
